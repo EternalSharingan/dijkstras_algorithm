@@ -17,7 +17,7 @@ int main()
 
     file_to_matrix(weights_matrix, matrix_size, "example2.txt");//  matrix_size = 6 "example1.txt" or matrix_size = 10 "example2.txt"
 
-    Dijkstra obj(matrix_size, weights_matrix);
+    Dijkstra *obj = new Dijkstra(matrix_size, weights_matrix);
 
     while(true)
     {
@@ -26,8 +26,9 @@ int main()
         cin >> start;
         cout <<"Enter finish:"<<endl;
         cin >> finish;
-        obj.print_way(start, finish);
+        obj->print_way(start, finish);
     }
+    delete obj;
     return 0;
 }
 

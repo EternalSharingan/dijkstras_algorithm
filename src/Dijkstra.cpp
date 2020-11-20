@@ -17,6 +17,19 @@ Dijkstra::Dijkstra(int matrix_size, double** weights_matrix)
     way_vector = new string [matrix_size];
 }
 
+Dijkstra::~Dijkstra()
+{
+    for (int i = 0; i < matrix_size; i++)
+    {
+        delete[] weights_matrix[i];
+        delete[] solution_matrix[i];
+    }
+
+    delete[] weights_matrix;
+    delete[] solution_matrix;
+    delete[] way_vector;
+}
+
 void Dijkstra::print()
 {
     for(int i = 0; i < matrix_size; i++)

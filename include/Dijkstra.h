@@ -14,6 +14,7 @@ private:
     string*  way_vector;
 public:
     Dijkstra(int, double**);
+    ~Dijkstra();
     void print();
     void print_way(int, int);
 private:
