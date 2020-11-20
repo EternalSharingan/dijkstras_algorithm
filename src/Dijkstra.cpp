@@ -17,7 +17,6 @@ Dijkstra::Dijkstra(int matrix_size, double** weights_matrix)
     way_vector = new string [matrix_size];
 }
 
-
 void Dijkstra::print()
 {
     for(int i = 0; i < matrix_size; i++)
@@ -43,26 +42,34 @@ void Dijkstra::print()
 
 void Dijkstra:: print_way(int start, int finish)
 {
-    if(start != this->start_point)
+    if(start < 0 || start >= matrix_size || finish < 0 || finish >= matrix_size)
     {
-        this->start_point = start;
-        calculate();
+        cout << "Wrong input! Try again." << endl << endl;
     }
-    cout << "Path length: ";
-    for(int i = matrix_size-1; i >= 0; i--)
+    else
     {
-        if(solution_matrix[i][finish] == DBL_MAX)
+        if(start != this->start_point)
         {
-            cout << "Path doesn't exist" << endl;
-            break;
+            this->start_point = start;
+            calculate();
         }
-        else if(solution_matrix[i][finish] != -1.0)
+        cout << "Path length: ";
+        for(int i = matrix_size-1; i >= 0; i--)
         {
-            cout << solution_matrix[i][finish] << endl;
-            break;
+            if(solution_matrix[i][finish] == DBL_MAX)
+            {
+                cout << "Path doesn't exist" << endl;
+                break;
+            }
+            else if(solution_matrix[i][finish] != -1.0)
+            {
+                cout << solution_matrix[i][finish] << endl;
+                break;
+            }
         }
+        cout << "Path: " << way_vector[finish] << endl << endl;
     }
-    cout <<"Path: " << way_vector[finish]<<endl<<endl;
+
 }
 
 void Dijkstra::calculate()
